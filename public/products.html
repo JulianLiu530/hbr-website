@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products — HBR Electronics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --deep: #030d1f;
+      --navy: #061840;
+      --glow: #4FC3F7;
+      --ice:  #A8D8EA;
+      --silver: #C0C8D8;
+      --display: 'Cormorant Garamond', serif;
+      --body: 'DM Sans', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--body);
+      background: var(--deep);
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ── Navbar ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(3,13,31,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(79,195,247,0.08);
+    }
+
+    .nav-logo {
+      display: flex; align-items: center; gap: 0.65rem;
+      text-decoration: none;
+    }
+    .nav-logo img { width: 32px; height: 32px; object-fit: contain; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-text span:first-child {
+      font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: #fff; font-weight: 400;
+    }
+    .nav-logo-text span:last-child {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.28em;
+      text-transform: uppercase; color: rgba(79,195,247,0.55); margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 0.25rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--body); font-size: 12px; letter-spacing: 0.08em;
+      text-transform: uppercase; color: rgba(255,255,255,0.45);
+      text-decoration: none; padding: 0.45rem 0.85rem; border-radius: 6px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: #fff; background: rgba(255,255,255,0.06);
+    }
+    .nav-links a.active { color: var(--glow); }
+
+    .nav-cta {
+      font-family: var(--body); font-size: 11px; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--navy); background: var(--glow);
+      text-decoration: none; padding: 0.55rem 1.2rem; border-radius: 6px;
+      font-weight: 600; transition: background 0.25s;
+    }
+    .nav-cta:hover { background: #fff; }
+
+    /* hamburger */
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 1.5px; background: rgba(255,255,255,0.6); margin: 4px 0; transition: 0.3s; }
+
+    @media (max-width: 700px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: block; }
+      nav.open .nav-links {
+        display: flex; flex-direction: column; align-items: flex-start;
+        position: fixed; top: 64px; left: 0; right: 0;
+        background: rgba(3,13,31,0.97); padding: 1rem 1.5rem 1.5rem;
+        border-bottom: 1px solid rgba(79,195,247,0.1);
+        gap: 0;
+      }
+      nav.open .nav-links a { padding: 0.7rem 0.5rem; width: 100%; }
+      nav.open .nav-cta {
+        display: block; margin: 0.5rem 1.5rem 1rem;
+        position: fixed; top: auto;
+        /* handled by JS class */
+      }
+    }
+
+    /* ── Page hero ── */
+    .page-hero {
+      padding: 140px 2rem 72px;
+      text-align: center;
+      position: relative;
+    }
+    .page-hero::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(79,195,247,0.09) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .eyebrow {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.4em;
+      text-transform: uppercase; color: var(--glow); opacity: 0.75;
+      margin-bottom: 1rem; display: block;
+    }
+    .page-hero h1 {
+      font-family: var(--display); font-weight: 300;
+      font-size: clamp(2.4rem, 6vw, 4.5rem); color: #fff;
+      letter-spacing: -0.01em; line-height: 1.08;
+      margin-bottom: 1rem;
+    }
+    .page-hero p {
+      color: rgba(255,255,255,0.4); font-size: clamp(0.88rem, 1.5vw, 1rem);
+      max-width: 480px; margin: 0 auto; line-height: 1.75;
+    }
+
+    /* ── Grid ── */
+    .section { max-width: 1200px; margin: 0 auto; padding: 0 2rem 100px; }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Category card ── */
+    .cat-card {
+      position: relative; border-radius: 20px; overflow: hidden;
+      padding: 2.5rem 2rem 2rem;
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 300px;
+      text-decoration: none;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s;
+      cursor: pointer;
+    }
+    .cat-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .cat-card-inner { position: relative; z-index: 2; }
+
+    .cat-card .cat-num {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.4em;
+      text-transform: uppercase; opacity: 0.35; margin-bottom: 2rem;
+    }
+    .cat-card .cat-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 22px;
+    }
+    .cat-card .cat-label {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.35em;
+      text-transform: uppercase; margin-bottom: 0.65rem;
+    }
+    .cat-card h2 {
+      font-family: var(--display); font-weight: 300;
+      font-size: clamp(1.5rem, 2.8vw, 2rem); color: #fff; line-height: 1.15;
+      margin-bottom: 0.85rem;
+    }
+    .cat-card p {
+      font-size: 0.82rem; color: rgba(255,255,255,0.38);
+      line-height: 1.7; max-width: 220px;
+    }
+    .cat-arrow {
+      position: absolute; bottom: 1.8rem; right: 1.8rem; z-index: 2;
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      transition: transform 0.3s;
+    }
+    .cat-card:hover .cat-arrow { transform: translate(2px,-2px); }
+    .cat-arrow svg { width: 16px; height: 16px; }
+
+    /* card 1: Screens */
+    .card-screens {
+      background: linear-gradient(140deg, rgba(6,24,64,0.95) 0%, rgba(4,12,32,0.98) 100%);
+      border: 1px solid rgba(79,195,247,0.22);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.35);
+    }
+    .card-screens:hover { box-shadow: 0 16px 56px rgba(79,195,247,0.12), 0 0 0 1px rgba(79,195,247,0.28); }
+    .card-screens .cat-label { color: #4FC3F7; }
+    .card-screens .cat-num  { color: #4FC3F7; }
+    .card-screens .cat-icon { background: rgba(79,195,247,0.1); border: 1px solid rgba(79,195,247,0.2); color: #4FC3F7; }
+    .card-screens .cat-arrow { background: rgba(79,195,247,0.15); border: 1px solid rgba(79,195,247,0.25); color: #4FC3F7; }
+
+    /* card 2: Glass */
+    .card-glass {
+      background: linear-gradient(140deg, rgba(4,14,36,0.95) 0%, rgba(3,10,28,0.98) 100%);
+      border: 1px solid rgba(168,216,234,0.2);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.35);
+    }
+    .card-glass:hover { box-shadow: 0 16px 56px rgba(168,216,234,0.1), 0 0 0 1px rgba(168,216,234,0.25); }
+    .card-glass .cat-label { color: #A8D8EA; }
+    .card-glass .cat-num  { color: #A8D8EA; }
+    .card-glass .cat-icon { background: rgba(168,216,234,0.08); border: 1px solid rgba(168,216,234,0.18); color: #A8D8EA; }
+    .card-glass .cat-arrow { background: rgba(168,216,234,0.1); border: 1px solid rgba(168,216,234,0.2); color: #A8D8EA; }
+
+    /* card 3: Housing */
+    .card-housing {
+      background: linear-gradient(140deg, rgba(5,14,32,0.95) 0%, rgba(3,10,26,0.98) 100%);
+      border: 1px solid rgba(192,200,216,0.18);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.35);
+    }
+    .card-housing:hover { box-shadow: 0 16px 56px rgba(192,200,216,0.08), 0 0 0 1px rgba(192,200,216,0.22); }
+    .card-housing .cat-label { color: #C0C8D8; }
+    .card-housing .cat-num  { color: #C0C8D8; }
+    .card-housing .cat-icon { background: rgba(192,200,216,0.07); border: 1px solid rgba(192,200,216,0.15); color: #C0C8D8; }
+    .card-housing .cat-arrow { background: rgba(192,200,216,0.08); border: 1px solid rgba(192,200,216,0.18); color: #C0C8D8; }
+
+    /* card 4: Battery */
+    .card-battery {
+      background: linear-gradient(140deg, rgba(5,20,30,0.95) 0%, rgba(3,12,22,0.98) 100%);
+      border: 1px solid rgba(129,230,160,0.18);
+      box-shadow: 0 4px 32px rgba(0,0,0,0.35);
+    }
+    .card-battery:hover { box-shadow: 0 16px 56px rgba(129,230,160,0.08), 0 0 0 1px rgba(129,230,160,0.22); }
+    .card-battery .cat-label { color: #81E6A0; }
+    .card-battery .cat-num  { color: #81E6A0; }
+    .card-battery .cat-icon { background: rgba(129,230,160,0.07); border: 1px solid rgba(129,230,160,0.15); color: #81E6A0; }
+    .card-battery .cat-arrow { background: rgba(129,230,160,0.08); border: 1px solid rgba(129,230,160,0.18); color: #81E6A0; }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 2rem;
+      display: flex; justify-content: center;
+      color: rgba(255,255,255,0.18);
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em;
+    }
+
+    /* dot grid bg */
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: radial-gradient(rgba(79,195,247,0.5) 1px, transparent 1px);
+      background-size: 32px 32px; opacity: 0.025;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <a href="/index" class="nav-logo">
+      <img src="/logo.png" alt="HBR" />
+      <div class="nav-logo-text">
+        <span>HBR</span>
+        <span>Electronics</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="products.html" class="active">Products</a></li>
+      <li><a href="screens.html">Screens</a></li>
+      <li><a href="glass.html">Glass+OCA</a></li>
+      <li><a href="housing.html">Housing</a></li>
+      <li><a href="battery.html">Batteries</a></li>
+    </ul>
+    <a href="/#contact" class="nav-cta">Get Quote</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Hero -->
+  <header class="page-hero">
+    <span class="eyebrow">HBR Electronics · Product Catalogue</span>
+    <h1>Mobile Phone<br>Parts & Accessories</h1>
+    <p>Factory direct supply from Dongguan. Select a category below to explore our full product range.</p>
+  </header>
+
+  <!-- Category Grid -->
+  <main class="section">
+    <div class="category-grid">
+
+      <!-- Screens -->
+      <a href="screens.html" class="cat-card card-screens">
+        <div class="cat-card-inner">
+          <div class="cat-num">01 / 04</div>
+          <div class="cat-icon">🖥</div>
+          <div class="cat-label">Display Assemblies</div>
+          <h2>Screens</h2>
+          <p>Hard OLED · Soft OLED · Incell — iPhone X to 17 Pro Max full series</p>
+        </div>
+        <div class="cat-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 13L13 3M13 3H7M13 3V9"/>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Glass+OCA -->
+      <a href="glass.html" class="cat-card card-glass">
+        <div class="cat-card-inner">
+          <div class="cat-num">02 / 04</div>
+          <div class="cat-icon">🪟</div>
+          <div class="cat-label">Cover Glass</div>
+          <h2>Glass + OCA</h2>
+          <p>Curved Glass+OCA · Flat Glass+OCA — precision bonded cover glass for repair</p>
+        </div>
+        <div class="cat-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 13L13 3M13 3H7M13 3V9"/>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Housing -->
+      <a href="housing.html" class="cat-card card-housing">
+        <div class="cat-card-inner">
+          <div class="cat-num">03 / 04</div>
+          <div class="cat-icon">📱</div>
+          <div class="cat-label">Frame & Body</div>
+          <h2>Back Housing</h2>
+          <p>With side buttons · With battery · With NFC — complete back assembly kits</p>
+        </div>
+        <div class="cat-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 13L13 3M13 3H7M13 3V9"/>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Battery -->
+      <a href="battery.html" class="cat-card card-battery">
+        <div class="cat-card-inner">
+          <div class="cat-num">04 / 04</div>
+          <div class="cat-icon">🔋</div>
+          <div class="cat-label">Power Solutions</div>
+          <h2>Batteries</h2>
+          <p>Standard · High Capacity · No-popup — full iPhone battery line with stable supply</p>
+        </div>
+        <div class="cat-arrow">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 13L13 3M13 3H7M13 3V9"/>
+          </svg>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+  <footer>© 2025 HBR Electronics · 洪柏荣电子 · All rights reserved</footer>
+
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const navbar = document.getElementById('navbar');
+    toggle.addEventListener('click', () => navbar.classList.toggle('open'));
+  </script>
+</body>
+</html>

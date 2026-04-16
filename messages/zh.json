@@ -1,0 +1,103 @@
+{
+  "nav": {
+    "products": "产品",
+    "about": "关于我们",
+    "features": "核心优势",
+    "contact": "联系我们"
+  },
+  "hero": {
+    "headline": "手机配件与液晶模组，工厂直供",
+    "subheadline": "自2009年起，洪柏荣专注于手机配件、LCD/LCM显示模组、光电器件及电子元器件的生产与出口，服务全球50+国家的批发商、经销商及维修商。",
+    "cta": "立即询价",
+    "cta_secondary": "查看产品"
+  },
+  "products": {
+    "title": "产品线",
+    "subtitle": "全品类3C电子，东莞工厂直供",
+    "bento": {
+      "mobile": {
+        "label": "手机配件",
+        "name": "手机零部件与配件",
+        "desc": "手机LCD屏总成、电池、排线、外壳、按键、扬声器等，全系配件直供维修市场。",
+        "sub": ["LCD屏幕总成", "手机电池更换", "排线与连接器", "外壳/后盖/前框"]
+      },
+      "lcd": {
+        "label": "LCD显示模组",
+        "name": "液晶显示模组 LCM",
+        "desc": "TFT、TN/STN/FSTN液晶屏；COG/COB/TAB模组；适用于工业及消费电子的中小尺寸显示屏及背光单元。",
+        "sub": ["TFT LCD模组", "TN / STN / FSTN液晶屏", "COG / COB / TAB模组", "LED背光模组"]
+      },
+      "opto": {
+        "label": "光电产品",
+        "name": "洪兴光电",
+        "desc": "LED背光器件、光学镜片、导光板、LED灯条及完整背光组件，配套LCD显示应用。",
+        "sub": ["LED背光器件", "光学镜片与导光板", "LED灯条与指示灯", "背光组件总成"]
+      },
+      "components": {
+        "label": "电子元器件",
+        "name": "零部件与元器件",
+        "desc": "连接器、电阻电容、二极管、集成电路、精密冲压件及塑料成型件，完整电子供应链配套。",
+        "sub": ["连接器与端子", "被动元件", "IC与半导体", "冲压与塑料模具件"]
+      },
+      "oem": {
+        "label": "OEM / ODM",
+        "name": "定制代工服务",
+        "desc": "15年以上OEM/ODM经验，提供LCD定制方案、显示组件、塑料及五金模具——从打样到量产全程支持。",
+        "badge": "15年+ OEM/ODM经验"
+      }
+    }
+  },
+  "features": {
+    "title": "为什么选择 HBR",
+    "subtitle": "15年工厂直供，值得信赖",
+    "items": [
+      {
+        "title": "15年以上行业经验",
+        "desc": "2009年深圳创立，2017年迁至东莞——深耕手机配件、LCD模组及电子元器件出口领域15年以上。"
+      },
+      {
+        "title": "工厂直供，临近深圳港",
+        "desc": "东莞工厂毗邻深圳港，具备竞争力的出厂价格、稳定供货能力及快速全球物流，支持大批量订单。"
+      },
+      {
+        "title": "严格品控，全球认证",
+        "desc": "全流程质量检验，ISO认证体系，服务欧洲、美洲、东南亚、中东及非洲的批发及B2B买家。"
+      }
+    ]
+  },
+  "about": {
+    "title": "关于洪柏荣电子",
+    "body": "洪柏荣（HBR）成立于2009年，是一家专注于手机配件、LCD显示模组、光电器件及电子元器件生产与出口的专业厂商。拥有15年以上OEM/ODM经验，东莞工厂毗邻深圳港，物流高效。服务对象覆盖欧洲、美洲、东南亚、中东及非洲的批发商、经销商、手机维修商及品牌采购商。",
+    "stat1_num": "15+",
+    "stat1_label": "年行业经验",
+    "stat2_num": "500+",
+    "stat2_label": "全球客户",
+    "stat3_num": "50+",
+    "stat3_label": "覆盖国家"
+  },
+  "footer": {
+    "tagline": "工厂直供，全球触达。",
+    "contact_title": "联系我们",
+    "contact_body": "需要手机零件、LCD模组或定制OEM/ODM？我们24小时内回复，团队支持中英文沟通。",
+    "form_heading": "发送消息",
+    "form_sub": "请填写以下表单，我们将尽快与您联系。",
+    "rights": "版权所有。"
+  },
+  "contact": {
+    "label_name": "姓名",
+    "placeholder_name": "例如：张三",
+    "label_email": "电子邮箱",
+    "placeholder_email": "you@company.com",
+    "label_message": "留言内容",
+    "placeholder_message": "请描述您的产品需求、数量、目标价格或其他问题…",
+    "submit": "发送消息",
+    "sending": "发送中…",
+    "error_name": "请输入您的姓名",
+    "error_email": "请输入有效的电子邮箱地址",
+    "error_message": "留言内容至少需要10个字符",
+    "error_submit": "发送失败，请重试或直接通过邮件联系我们。",
+    "success_title": "消息已发送！",
+    "success_body": "感谢您的来信，我们将在24小时内回复您。",
+    "send_another": "再次发送"
+  }
+}

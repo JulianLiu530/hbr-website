@@ -1,0 +1,103 @@
+{
+  "nav": {
+    "products": "Products",
+    "about": "About",
+    "features": "Why HBR",
+    "contact": "Contact"
+  },
+  "hero": {
+    "headline": "Mobile Parts & Display Modules, Factory Direct",
+    "subheadline": "Since 2009, HBR has been manufacturing and exporting mobile phone accessories, LCD/LCM modules, optoelectronic components and electronic parts — serving wholesalers, distributors and repair shops in 50+ countries.",
+    "cta": "Get a Quote",
+    "cta_secondary": "View Products"
+  },
+  "products": {
+    "title": "Product Lines",
+    "subtitle": "Full-spectrum 3C electronics, factory direct from Dongguan",
+    "bento": {
+      "mobile": {
+        "label": "Mobile Accessories",
+        "name": "Phone Parts & Accessories",
+        "desc": "LCD screens & digitizer assemblies, batteries, flex cables, housings, buttons, speakers and more — full teardown & rebuild supply.",
+        "sub": ["LCD & Digitizer Assembly", "Battery Replacement", "Flex Cables & Connectors", "Housing / Back Cover / Panels"]
+      },
+      "lcd": {
+        "label": "LCD & LCM",
+        "name": "Display Modules",
+        "desc": "TFT, TN/STN/FSTN panels; COG/COB/TAB modules; small & medium size displays for industrial and consumer electronics; backlight units.",
+        "sub": ["TFT LCD Modules", "TN / STN / FSTN Panels", "COG / COB / TAB Modules", "LED Backlight Units"]
+      },
+      "opto": {
+        "label": "Optoelectronics",
+        "name": "Hongxing Opto",
+        "desc": "LED backlight components, optical lenses, light guide plates, LED strips and complete backlight assemblies for LCD devices.",
+        "sub": ["LED Backlight Components", "Optical Lenses & LGPs", "LED Strips & Indicators", "Backlight Assemblies"]
+      },
+      "components": {
+        "label": "Electronic Components",
+        "name": "Parts & Components",
+        "desc": "Connectors, resistors, capacitors, diodes, ICs, precision stamping and plastic molding parts for full electronics supply chain.",
+        "sub": ["Connectors & Terminals", "Passive Components", "ICs & Semiconductors", "Stamping & Molding Parts"]
+      },
+      "oem": {
+        "label": "OEM / ODM",
+        "name": "Custom & OEM/ODM",
+        "desc": "15+ years of OEM & ODM experience. Custom LCD solutions, display assemblies, plastic & hardware molding — from prototype to mass production.",
+        "badge": "15+ Yrs OEM/ODM"
+      }
+    }
+  },
+  "features": {
+    "title": "Why Choose HBR",
+    "subtitle": "15 years of factory-direct trust",
+    "items": [
+      {
+        "title": "15+ Years of Experience",
+        "desc": "Established in 2009 in Shenzhen, relocated to Dongguan in 2017 — over 15 years of deep expertise in mobile accessories, LCD modules and electronic components export."
+      },
+      {
+        "title": "Factory Direct & Fast Logistics",
+        "desc": "Our Dongguan factory sits close to Shenzhen port, enabling competitive pricing, stable supply and rapid worldwide delivery for bulk orders."
+      },
+      {
+        "title": "Full QC & Global Certification",
+        "desc": "Strict quality inspection at every stage, ISO-certified processes, serving wholesale and B2B buyers in Europe, Americas, Southeast Asia, Middle East and Africa."
+      }
+    ]
+  },
+  "about": {
+    "title": "About HBR Electronics",
+    "body": "Established in 2009, HONGBAIRONG (HBR) is a professional manufacturer and exporter focused on mobile phone accessories, LCD modules, optoelectronic components and electronic parts. With over 15 years of OEM & ODM experience, our factory in Dongguan, Guangdong sits close to Shenzhen port for efficient global logistics. We serve wholesalers, distributors, repair shops and brand buyers across Europe, America, Southeast Asia, the Middle East and Africa.",
+    "stat1_num": "15+",
+    "stat1_label": "Years Experience",
+    "stat2_num": "500+",
+    "stat2_label": "Global Clients",
+    "stat3_num": "50+",
+    "stat3_label": "Countries Served"
+  },
+  "footer": {
+    "tagline": "Factory Direct. Global Reach.",
+    "contact_title": "Get in Touch",
+    "contact_body": "Looking for mobile parts, LCD modules or custom OEM/ODM? We respond within 24 hours. Our team speaks English and Chinese.",
+    "form_heading": "Send us a message",
+    "form_sub": "Fill in the form below and we'll get back to you shortly.",
+    "rights": "All rights reserved."
+  },
+  "contact": {
+    "label_name": "Full Name",
+    "placeholder_name": "e.g. John Smith",
+    "label_email": "Email Address",
+    "placeholder_email": "you@company.com",
+    "label_message": "Message",
+    "placeholder_message": "Describe your product needs, quantity, target price or any questions…",
+    "submit": "Send Message",
+    "sending": "Sending…",
+    "error_name": "Please enter your name",
+    "error_email": "Please enter a valid email address",
+    "error_message": "Message must be at least 10 characters",
+    "error_submit": "Something went wrong. Please try again or contact us directly.",
+    "success_title": "Message sent!",
+    "success_body": "Thank you for reaching out. We'll get back to you within 24 hours.",
+    "send_another": "Send another message"
+  }
+}

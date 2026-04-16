@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Screens — HBR Electronics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --deep: #030d1f; --navy: #061840; --glow: #4FC3F7;
+      --display: 'Cormorant Garamond', serif;
+      --body: 'DM Sans', sans-serif; --mono: 'JetBrains Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--body); background: var(--deep); color: #fff; -webkit-font-smoothing: antialiased; }
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: radial-gradient(rgba(79,195,247,0.5) 1px, transparent 1px);
+      background-size: 32px 32px; opacity: 0.025;
+    }
+
+    /* ── Navbar ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(3,13,31,0.88); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(79,195,247,0.08);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
+    .nav-logo img { width: 32px; height: 32px; object-fit: contain; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-text span:first-child { font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; }
+    .nav-logo-text span:last-child { font-family: var(--mono); font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(79,195,247,0.55); margin-top: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-links a { font-family: var(--body); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; padding: 0.45rem 0.85rem; border-radius: 6px; transition: color 0.2s, background 0.2s; }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .nav-links a.active { color: var(--glow); background: rgba(79,195,247,0.06); }
+    .nav-cta { font-family: var(--body); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--navy); background: var(--glow); text-decoration: none; padding: 0.55rem 1.2rem; border-radius: 6px; font-weight: 600; transition: background 0.25s; }
+    .nav-cta:hover { background: #fff; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 1.5px; background: rgba(255,255,255,0.6); margin: 4px 0; }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: block; }
+      nav.open .nav-links { display: flex; flex-direction: column; align-items: flex-start; position: fixed; top: 64px; left: 0; right: 0; background: rgba(3,13,31,0.97); padding: 1rem 1.5rem 1.5rem; border-bottom: 1px solid rgba(79,195,247,0.1); gap: 0; }
+      nav.open .nav-links a { padding: 0.7rem 0.5rem; width: 100%; }
+    }
+
+    /* ── Page hero ── */
+    .page-hero { padding: 130px 2rem 60px; text-align: center; position: relative; }
+    .page-hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 50% 0%, rgba(79,195,247,0.09) 0%, transparent 65%); pointer-events: none; }
+    .eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--glow); opacity: 0.75; margin-bottom: 1rem; display: block; }
+    .page-hero h1 { font-family: var(--display); font-weight: 300; font-size: clamp(2.2rem, 5vw, 4rem); color: #fff; line-height: 1.1; margin-bottom: 0.9rem; }
+    .page-hero p { color: rgba(255,255,255,0.38); font-size: 0.95rem; max-width: 460px; margin: 0 auto; line-height: 1.75; }
+
+    /* ── Section ── */
+    .section { max-width: 1200px; margin: 0 auto; padding: 0 2rem 100px; position: relative; z-index: 1; }
+    .section-label {
+      display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; margin-top: 3rem;
+    }
+    .section-label span {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem; border-radius: 20px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: rgba(255,255,255,0.06); }
+
+    .label-hard { color: #4FC3F7; background: rgba(79,195,247,0.1); border: 1px solid rgba(79,195,247,0.2); }
+    .label-soft { color: #C0C8D8; background: rgba(192,200,216,0.08); border: 1px solid rgba(192,200,216,0.18); }
+    .label-incell { color: #A8D8EA; background: rgba(168,216,234,0.08); border: 1px solid rgba(168,216,234,0.18); }
+
+    /* ── Cards grid ── */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+    @media (max-width: 500px) { .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; } }
+
+    .prod-card {
+      border-radius: 16px; padding: 1.5rem 1.25rem 1.25rem;
+      display: flex; flex-direction: column; gap: 0.5rem;
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s;
+      cursor: default;
+    }
+    .prod-card:hover { transform: translateY(-5px); }
+
+    /* Hard OLED */
+    .c-hard {
+      background: linear-gradient(140deg, rgba(6,20,54,0.9), rgba(4,12,36,0.95));
+      border: 1px solid rgba(79,195,247,0.18);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    }
+    .c-hard:hover { box-shadow: 0 12px 40px rgba(79,195,247,0.1), 0 0 0 1px rgba(79,195,247,0.25); }
+    .c-hard .badge { color: #4FC3F7; background: rgba(79,195,247,0.1); border: 1px solid rgba(79,195,247,0.2); }
+    .c-hard .model { color: #fff; }
+
+    /* Soft OLED */
+    .c-soft {
+      background: linear-gradient(140deg, rgba(5,14,36,0.9), rgba(3,10,26,0.95));
+      border: 1px solid rgba(192,200,216,0.15);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    }
+    .c-soft:hover { box-shadow: 0 12px 40px rgba(192,200,216,0.08), 0 0 0 1px rgba(192,200,216,0.2); }
+    .c-soft .badge { color: #C0C8D8; background: rgba(192,200,216,0.08); border: 1px solid rgba(192,200,216,0.18); }
+    .c-soft .model { color: #fff; }
+
+    /* Incell */
+    .c-incell {
+      background: linear-gradient(140deg, rgba(4,14,36,0.9), rgba(3,10,28,0.95));
+      border: 1px solid rgba(168,216,234,0.15);
+      box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    }
+    .c-incell:hover { box-shadow: 0 12px 40px rgba(168,216,234,0.08), 0 0 0 1px rgba(168,216,234,0.2); }
+    .c-incell .badge { color: #A8D8EA; background: rgba(168,216,234,0.08); border: 1px solid rgba(168,216,234,0.18); }
+    .c-incell .model { color: #fff; }
+
+    .prod-card .badge {
+      display: inline-block; font-family: var(--mono); font-size: 8px;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      padding: 0.25rem 0.6rem; border-radius: 20px; align-self: flex-start; margin-bottom: 0.3rem;
+    }
+    .prod-card .model {
+      font-family: var(--display); font-weight: 400;
+      font-size: clamp(0.95rem, 1.5vw, 1.1rem); line-height: 1.3;
+    }
+    .prod-card .sub {
+      font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.5; margin-top: 0.2rem;
+    }
+
+    /* ── Type showcase ── */
+    .type-showcase {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+      margin-bottom: 3.5rem;
+    }
+    @media (max-width: 640px) { .type-showcase { grid-template-columns: 1fr; } }
+
+    .type-card {
+      border-radius: 18px; overflow: hidden;
+      position: relative;
+      transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s;
+    }
+    .type-card:hover { transform: translateY(-6px); }
+    .type-card img {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover; display: block;
+      border-radius: 18px 18px 0 0;
+    }
+    .type-card-info {
+      padding: 1rem 1.25rem 1.25rem;
+      border-radius: 0 0 18px 18px;
+    }
+    .type-card-info .t-label {
+      font-family: var(--mono); font-size: 8px; letter-spacing: 0.35em;
+      text-transform: uppercase; margin-bottom: 0.3rem; display: block;
+    }
+    .type-card-info h3 {
+      font-family: var(--display); font-weight: 300;
+      font-size: 1.2rem; color: #fff; margin-bottom: 0.3rem;
+    }
+    .type-card-info p { font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.6; }
+
+    .tc-hard { background: linear-gradient(140deg, rgba(6,20,54,0.95), rgba(4,12,36,0.98)); border: 1px solid rgba(79,195,247,0.2); box-shadow: 0 4px 24px rgba(0,0,0,0.35); }
+    .tc-hard:hover { box-shadow: 0 16px 48px rgba(79,195,247,0.12), 0 0 0 1px rgba(79,195,247,0.3); }
+    .tc-hard .t-label { color: #4FC3F7; }
+
+    .tc-soft { background: linear-gradient(140deg, rgba(5,14,36,0.95), rgba(3,10,26,0.98)); border: 1px solid rgba(192,200,216,0.18); box-shadow: 0 4px 24px rgba(0,0,0,0.35); }
+    .tc-soft:hover { box-shadow: 0 16px 48px rgba(192,200,216,0.08), 0 0 0 1px rgba(192,200,216,0.25); }
+    .tc-soft .t-label { color: #C0C8D8; }
+
+    .tc-incell { background: linear-gradient(140deg, rgba(4,14,36,0.95), rgba(3,10,28,0.98)); border: 1px solid rgba(168,216,234,0.18); box-shadow: 0 4px 24px rgba(0,0,0,0.35); }
+    .tc-incell:hover { box-shadow: 0 16px 48px rgba(168,216,234,0.08), 0 0 0 1px rgba(168,216,234,0.25); }
+    .tc-incell .t-label { color: #A8D8EA; }
+
+    /* ── Back link ── */
+    .back-link {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      text-decoration: none; color: rgba(255,255,255,0.35);
+      font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+      font-family: var(--mono); margin-bottom: 3rem; margin-top: 2rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--glow); }
+    .back-link svg { width: 14px; height: 14px; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem; display: flex; justify-content: center; color: rgba(255,255,255,0.18); font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="products.html" class="nav-logo">
+      <img src="/logo.png" alt="HBR" />
+      <div class="nav-logo-text"><span>HBR</span><span>Electronics</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="products.html">Products</a></li>
+      <li><a href="screens.html" class="active">Screens</a></li>
+      <li><a href="glass.html">Glass+OCA</a></li>
+      <li><a href="housing.html">Housing</a></li>
+      <li><a href="battery.html">Batteries</a></li>
+    </ul>
+    <a href="/#contact" class="nav-cta">Get Quote</a>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  </nav>
+
+  <header class="page-hero">
+    <span class="eyebrow">01 — Display Assemblies</span>
+    <h1>iPhone Screens</h1>
+    <p>Hard OLED · Soft OLED · Incell — full series from iPhone X to iPhone 17 Pro Max</p>
+  </header>
+
+  <main class="section">
+    <a href="products.html" class="back-link">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L5 8l5 5"/></svg>
+      All Products
+    </a>
+
+    <!-- Type Showcase -->
+    <div class="type-showcase">
+      <div class="type-card tc-hard">
+        <img src="/images/screen-hard-oled.png" alt="Hard OLED Screen" />
+        <div class="type-card-info">
+          <span class="t-label">Hard OLED</span>
+          <h3>Hard OLED</h3>
+          <p>Pro series · Premium brightness & colour accuracy</p>
+        </div>
+      </div>
+      <div class="type-card tc-soft">
+        <img src="/images/screen-soft-oled.png" alt="Soft OLED Screen" />
+        <div class="type-card-info">
+          <span class="t-label">Soft OLED</span>
+          <h3>Soft OLED</h3>
+          <p>Standard series · Flexible display technology</p>
+        </div>
+      </div>
+      <div class="type-card tc-incell">
+        <img src="/images/screen-incell.png" alt="Incell Screen" />
+        <div class="type-card-info">
+          <span class="t-label">Incell LCD</span>
+          <h3>Incell</h3>
+          <p>FHD / HD+ / HD · Cost-effective LCD alternative</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hard OLED -->
+    <div class="section-label"><span class="label-hard">Hard OLED</span></div>
+    <div class="cards-grid">
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone X</div><div class="sub">5.8" · 2436×1125</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone XS</div><div class="sub">5.8" · 2436×1125</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone XS Max</div><div class="sub">6.5" · 2688×1242</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 11 Pro</div><div class="sub">5.8" · 2436×1125</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 11 Pro Max</div><div class="sub">6.5" · 2688×1242</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 12 Pro</div><div class="sub">6.1" · 2532×1170</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 12 Pro Max</div><div class="sub">6.7" · 2778×1284</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 13 Pro</div><div class="sub">6.1" · 2532×1170</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 13 Pro Max</div><div class="sub">6.7" · 2778×1284</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 14 Pro</div><div class="sub">6.1" · 2556×1179</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 14 Pro Max</div><div class="sub">6.7" · 2796×1290</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 15 Pro</div><div class="sub">6.1" · 2556×1179</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 15 Pro Max</div><div class="sub">6.7" · 2796×1290</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 16 Pro</div><div class="sub">6.3" · 2622×1206</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 16 Pro Max</div><div class="sub">6.9" · 2868×1320</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 17 Pro</div><div class="sub">6.3" · Latest</div></div>
+      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 17 Pro Max</div><div class="sub">6.9" · Latest</div></div>
+    </div>
+
+    <!-- Soft OLED -->
+    <div class="section-label"><span class="label-soft">Soft OLED</span></div>
+    <div class="cards-grid">
+      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 12</div><div class="sub">6.1" · 2532×1170</div></div>
+      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 12 Mini</div><div class="sub">5.4" · 2340×1080</div></div>
+      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 13</div><div class="sub">6.1" · 2532×1170</div></div>
+      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 13 Mini</div><div class="sub">5.4" · 2340×1080</div></div>
+      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 14</div><div class="sub">6.1" · 2532×1170</div></div>
+      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 14 Plus</div><div class="sub">6.7" · 2778×1284</div></div>
+      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 15</div><div class="sub">6.1" · 2556×1179</div></div>
+      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 15 Plus</div><div class="sub">6.7" · 2796×1290</div></div>
+      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 16</div><div class="sub">6.1" · 2556×1179</div></div>
+      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 16 Plus</div><div class="sub">6.7" · 2796×1290</div></div>
+      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 17</div><div class="sub">6.1" · Latest</div></div>
+      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 17 Plus</div><div class="sub">6.7" · Latest</div></div>
+    </div>
+
+    <!-- Incell -->
+    <div class="section-label"><span class="label-incell">Incell</span></div>
+    <div class="cards-grid">
+      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone X</div><div class="sub">5.8" · LCD</div></div>
+      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone XR</div><div class="sub">6.1" · 1792×828</div></div>
+      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone 11</div><div class="sub">6.1" · 1792×828</div></div>
+      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone 12</div><div class="sub">6.1" · LCD alt.</div></div>
+      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone 12 Mini</div><div class="sub">5.4" · LCD alt.</div></div>
+      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone 13</div><div class="sub">6.1" · LCD alt.</div></div>
+      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone 13 Mini</div><div class="sub">5.4" · LCD alt.</div></div>
+      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone 14</div><div class="sub">6.1" · LCD alt.</div></div>
+    </div>
+  </main>
+
+  <footer>© 2025 HBR Electronics · 洪柏荣电子 · All rights reserved</footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', () =>
+      document.getElementById('navbar').classList.toggle('open'));
+  </script>
+</body>
+</html>
