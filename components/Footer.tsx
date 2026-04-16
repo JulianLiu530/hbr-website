@@ -69,8 +69,8 @@ export default function Footer() {
                   {
                     icon: Mail,
                     label: 'Email',
-                    value: 'info@hbrelectronics.com',
-                    href: 'mailto:info@hbrelectronics.com',
+                    value: 'julianliu@hbrlcd.com',
+                    href: 'mailto:julianliu@hbrlcd.com',
                   },
                   {
                     icon: Phone,
@@ -134,7 +134,7 @@ export default function Footer() {
                   <span className="text-xs tracking-wide">WhatsApp</span>
                 </a>
                 <a
-                  href="mailto:info@hbrelectronics.com"
+                  href="mailto:julianliu@hbrlcd.com"
                   className="group flex items-center gap-2.5 bg-white/[0.04] hover:bg-[#4FC3F7] border border-white/[0.08] hover:border-[#4FC3F7] text-white/50 hover:text-[#061840] px-4 py-2.5 rounded-lg transition-all duration-300"
                 >
                   <Mail size={14} />
@@ -222,7 +222,7 @@ export default function Footer() {
               <MessageCircle size={14} />
             </a>
             <a
-              href="mailto:info@hbrelectronics.com"
+              href="mailto:julianliu@hbrlcd.com"
               className="text-white/15 hover:text-[#4FC3F7] transition-colors"
             >
               <Mail size={14} />

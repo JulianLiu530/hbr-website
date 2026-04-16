@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Why Choose HBR — HBR Electronics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --deep: #030d1f; --navy: #061840; --glow: #4FC3F7;
+      --display: 'Cormorant Garamond', serif;
+      --body: 'DM Sans', sans-serif; --mono: 'JetBrains Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--body); background: var(--deep); color: #fff; -webkit-font-smoothing: antialiased; }
+    body::after { content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0; background-image: radial-gradient(rgba(79,195,247,0.5) 1px, transparent 1px); background-size: 32px 32px; opacity: 0.025; }
+
+    /* Navbar */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(3,13,31,0.88); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(79,195,247,0.08);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
+    .nav-logo img { width: 32px; height: 32px; object-fit: contain; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-text span:first-child { font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; }
+    .nav-logo-text span:last-child { font-family: var(--mono); font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(79,195,247,0.55); margin-top: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-links a { font-family: var(--body); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; padding: 0.45rem 0.85rem; border-radius: 6px; transition: color 0.2s, background 0.2s; }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .nav-links a.active { color: #4FC3F7; background: rgba(79,195,247,0.08); }
+    /* Products dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
+    .nav-dropdown > a::after { content: '▾'; font-size: 9px; opacity: 0.5; }
+    .dropdown-menu {
+      display: none; position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+      background: rgba(4,12,34,0.97); backdrop-filter: blur(16px);
+      border: 1px solid rgba(79,195,247,0.12); border-radius: 10px;
+      padding: 0.5rem; min-width: 160px; list-style: none;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu li a {
+      display: block; padding: 0.5rem 0.85rem; font-family: var(--body);
+      font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); text-decoration: none; border-radius: 6px;
+      transition: color 0.15s, background 0.15s; white-space: nowrap;
+    }
+    .dropdown-menu li a:hover { color: #4FC3F7; background: rgba(79,195,247,0.08); }
+    .nav-cta { font-family: var(--body); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--navy); background: var(--glow); text-decoration: none; padding: 0.55rem 1.2rem; border-radius: 6px; font-weight: 600; transition: background 0.25s; }
+    .nav-cta:hover { background: #fff; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 1.5px; background: rgba(255,255,255,0.6); margin: 4px 0; }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: block; }
+      nav.open .nav-links { display: flex; flex-direction: column; align-items: flex-start; position: fixed; top: 64px; left: 0; right: 0; background: rgba(3,13,31,0.97); padding: 1rem 1.5rem 1.5rem; border-bottom: 1px solid rgba(79,195,247,0.1); gap: 0; }
+      nav.open .nav-links li { width: 100%; }
+      nav.open .nav-links a { padding: 0.7rem 0.5rem; width: 100%; display: block; }
+      .dropdown-menu { display: none !important; }
+    }
+
+    /* Page hero */
+    .page-hero {
+      padding: 140px 2rem 80px; text-align: center; position: relative;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(79,195,247,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: #4FC3F7; opacity: 0.8; margin-bottom: 1rem; display: block; }
+    .page-hero h1 { font-family: var(--display); font-weight: 300; font-size: clamp(2.4rem, 5vw, 4.2rem); color: #fff; line-height: 1.1; margin-bottom: 1rem; }
+    .page-hero p { color: rgba(255,255,255,0.4); font-size: 0.95rem; max-width: 480px; margin: 0 auto; line-height: 1.75; }
+
+    /* Section */
+    .section { max-width: 1100px; margin: 0 auto; padding: 0 2rem 100px; position: relative; }
+
+    /* Back link */
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; color: rgba(255,255,255,0.3); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--mono); margin-bottom: 3rem; margin-top: 2rem; transition: color 0.2s; }
+    .back-link:hover { color: #4FC3F7; }
+    .back-link svg { width: 14px; height: 14px; }
+
+    /* Accent line */
+    .accent-line { width: 100%; height: 1px; background: rgba(255,255,255,0.05); margin: 3rem 0; }
+
+    /* Feature cards */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+    @media (max-width: 680px) { .cards-grid { grid-template-columns: 1fr; } }
+
+    .feat-card {
+      border-radius: 20px; padding: 2.5rem 2rem;
+      background: linear-gradient(140deg, rgba(6,20,48,0.95), rgba(4,14,34,0.98));
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s;
+      position: relative; overflow: hidden;
+    }
+    .feat-card:hover { transform: translateY(-6px); }
+
+    .feat-card-1 { border: 1px solid rgba(79,195,247,0.25); box-shadow: 0 4px 24px rgba(79,195,247,0.08); }
+    .feat-card-1:hover { box-shadow: 0 16px 48px rgba(79,195,247,0.14), 0 0 0 1px rgba(79,195,247,0.3); }
+    .feat-card-1 .card-num { color: rgba(79,195,247,0.06); }
+    .feat-card-1 .icon-box { background: linear-gradient(135deg, rgba(6,24,64,0.9), rgba(10,36,99,0.8)); border-color: rgba(79,195,247,0.2); }
+    .feat-card-1 .icon-box svg { color: #4FC3F7; }
+    .feat-card-1 .tag { color: #4FC3F7; }
+    .feat-card-1 .top-bar { background: linear-gradient(90deg, transparent, #4FC3F7, transparent); }
+    .feat-card-1 .left-bar { background: #4FC3F7; }
+    .feat-card-1 .bullet-icon { color: #4FC3F7; }
+
+    .feat-card-2 { border: 1px solid rgba(168,216,234,0.25); box-shadow: 0 4px 24px rgba(168,216,234,0.06); }
+    .feat-card-2:hover { box-shadow: 0 16px 48px rgba(168,216,234,0.12), 0 0 0 1px rgba(168,216,234,0.3); }
+    .feat-card-2 .card-num { color: rgba(168,216,234,0.06); }
+    .feat-card-2 .icon-box { background: linear-gradient(135deg, rgba(6,24,64,0.9), rgba(10,36,99,0.8)); border-color: rgba(168,216,234,0.2); }
+    .feat-card-2 .icon-box svg { color: #A8D8EA; }
+    .feat-card-2 .tag { color: #A8D8EA; }
+    .feat-card-2 .top-bar { background: linear-gradient(90deg, transparent, #A8D8EA, transparent); }
+    .feat-card-2 .left-bar { background: #A8D8EA; }
+    .feat-card-2 .bullet-icon { color: #A8D8EA; }
+
+    .feat-card-3 { border: 1px solid rgba(192,200,216,0.2); box-shadow: 0 4px 24px rgba(192,200,216,0.05); }
+    .feat-card-3:hover { box-shadow: 0 16px 48px rgba(192,200,216,0.1), 0 0 0 1px rgba(192,200,216,0.25); }
+    .feat-card-3 .card-num { color: rgba(192,200,216,0.06); }
+    .feat-card-3 .icon-box { background: linear-gradient(135deg, rgba(6,24,64,0.9), rgba(10,36,99,0.8)); border-color: rgba(192,200,216,0.2); }
+    .feat-card-3 .icon-box svg { color: #C0C8D8; }
+    .feat-card-3 .tag { color: #C0C8D8; }
+    .feat-card-3 .top-bar { background: linear-gradient(90deg, transparent, #C0C8D8, transparent); }
+    .feat-card-3 .left-bar { background: #C0C8D8; }
+    .feat-card-3 .bullet-icon { color: #C0C8D8; }
+
+    .card-num {
+      position: absolute; top: -0.5rem; left: -0.5rem;
+      font-family: var(--display); font-size: 7rem; font-weight: 300;
+      line-height: 1; pointer-events: none; select: none;
+    }
+    .top-bar { position: absolute; top: 0; left: 2rem; right: 2rem; height: 2px; border-radius: 99px; opacity: 0; transition: opacity 0.4s; }
+    .feat-card:hover .top-bar { opacity: 1; }
+    .left-bar { position: absolute; left: 0; top: 3rem; bottom: 3rem; width: 2px; border-radius: 99px; opacity: 0; transition: opacity 0.4s; }
+    .feat-card:hover .left-bar { opacity: 1; }
+
+    .icon-box {
+      width: 48px; height: 48px; border-radius: 12px; border: 1px solid;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 1.75rem;
+      transition: transform 0.4s;
+    }
+    .feat-card:hover .icon-box { transform: scale(1.1); }
+    .icon-box svg { width: 20px; height: 20px; }
+
+    .tag { font-family: var(--mono); font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; display: block; margin-bottom: 0.75rem; }
+    .card-title { font-family: var(--display); font-weight: 400; font-size: 1.15rem; color: #fff; line-height: 1.3; margin-bottom: 0.75rem; }
+    .card-desc { color: rgba(255,255,255,0.4); font-size: 0.875rem; line-height: 1.75; margin-bottom: 1.75rem; }
+
+    .bullets { list-style: none; display: flex; flex-direction: column; gap: 0.625rem; }
+    .bullets li { display: flex; align-items: flex-start; gap: 0.625rem; font-size: 0.875rem; color: rgba(255,255,255,0.45); }
+    .bullets li svg { width: 14px; height: 14px; margin-top: 2px; flex-shrink: 0; }
+
+    /* CTA section */
+    .cta-section {
+      background: var(--navy); border-radius: 24px; padding: 4rem 3rem;
+      text-align: center; position: relative; overflow: hidden; margin-top: 3rem;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(79,195,247,0.1), transparent 60%);
+    }
+    .cta-section h2 { font-family: var(--display); font-weight: 300; font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: #fff; margin-bottom: 0.75rem; position: relative; }
+    .cta-section p { color: rgba(255,255,255,0.4); font-size: 0.9rem; margin-bottom: 2rem; position: relative; }
+    .cta-btn { display: inline-block; background: #4FC3F7; color: var(--navy); font-family: var(--body); font-weight: 600; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; transition: background 0.25s; position: relative; }
+    .cta-btn:hover { background: #fff; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem; display: flex; justify-content: center; color: rgba(255,255,255,0.18); font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="/" class="nav-logo">
+      <img src="/logo.png" alt="HBR" />
+      <div class="nav-logo-text"><span>HBR</span><span>Electronics</span></div>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-dropdown">
+        <a href="/products.html">Products</a>
+        <ul class="dropdown-menu">
+          <li><a href="/screens.html">Screens</a></li>
+          <li><a href="/glass.html">Glass + OCA</a></li>
+          <li><a href="/housing.html">Back Housing</a></li>
+          <li><a href="/battery.html">Batteries</a></li>
+        </ul>
+      </li>
+      <li><a href="/why-hbr.html" class="active">Why HBR</a></li>
+      <li><a href="/about-hbr.html">About HBR</a></li>
+    </ul>
+    <a href="/#contact" class="nav-cta">Get Quote</a>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  </nav>
+
+  <header class="page-hero">
+    <span class="eyebrow">02 — Our Advantages</span>
+    <h1>Why Choose HBR</h1>
+    <p>15 years of factory-direct trust — experience, logistics, and quality that global buyers rely on.</p>
+  </header>
+
+  <main class="section">
+    <a href="/" class="back-link">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L5 8l5 5"/></svg>
+      Back to Home
+    </a>
+
+    <div class="cards-grid">
+
+      <!-- Card 1: Experience -->
+      <div class="feat-card feat-card-1">
+        <div class="card-num">01</div>
+        <div class="top-bar"></div>
+        <div class="left-bar"></div>
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+          </svg>
+        </div>
+        <span class="tag">Advantage 01</span>
+        <h3 class="card-title">15+ Years of Experience</h3>
+        <p class="card-desc">Established in 2009 in Shenzhen, relocated to Dongguan in 2017 — over 15 years of deep expertise in mobile accessories, LCD modules and electronic components export.</p>
+        <ul class="bullets">
+          <li>
+            <svg class="bullet-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            15+ Years OEM &amp; ODM
+          </li>
+          <li>
+            <svg class="bullet-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Shenzhen → Dongguan since 2009
+          </li>
+          <li>
+            <svg class="bullet-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Full product lifecycle support
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card 2: Logistics -->
+      <div class="feat-card feat-card-2">
+        <div class="card-num">02</div>
+        <div class="top-bar"></div>
+        <div class="left-bar"></div>
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <span class="tag">Advantage 02</span>
+        <h3 class="card-title">Factory Direct &amp; Fast Logistics</h3>
+        <p class="card-desc">Our Dongguan factory sits close to Shenzhen port, enabling competitive pricing, stable supply and rapid worldwide delivery for bulk orders.</p>
+        <ul class="bullets">
+          <li>
+            <svg class="bullet-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Close to Shenzhen Port
+          </li>
+          <li>
+            <svg class="bullet-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Stable bulk supply chain
+          </li>
+          <li>
+            <svg class="bullet-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Competitive factory direct price
+          </li>
+        </ul>
+      </div>
+
+      <!-- Card 3: Quality -->
+      <div class="feat-card feat-card-3">
+        <div class="card-num">03</div>
+        <div class="top-bar"></div>
+        <div class="left-bar"></div>
+        <div class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <span class="tag">Advantage 03</span>
+        <h3 class="card-title">Full QC &amp; Global Reach</h3>
+        <p class="card-desc">Strict quality inspection at every stage, ISO-certified processes, serving wholesale and B2B buyers in Europe, Americas, Southeast Asia, Middle East and Africa.</p>
+        <ul class="bullets">
+          <li>
+            <svg class="bullet-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Full test before shipment
+          </li>
+          <li>
+            <svg class="bullet-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Serving EU, US, SEA, ME, Africa
+          </li>
+          <li>
+            <svg class="bullet-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            Wholesale &amp; B2B support
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="accent-line"></div>
+
+    <!-- Stats strip -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;text-align:center;padding:2rem 0 3rem;">
+      <div>
+        <div style="font-family:var(--display);font-weight:300;font-size:clamp(2.5rem,5vw,3.8rem);color:#fff;line-height:1;">15<span style="font-size:0.5em;">+</span></div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:0.5rem;">Years Experience</div>
+      </div>
+      <div>
+        <div style="font-family:var(--display);font-weight:300;font-size:clamp(2.5rem,5vw,3.8rem);color:#fff;line-height:1;">500<span style="font-size:0.5em;">+</span></div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:0.5rem;">Global Clients</div>
+      </div>
+      <div>
+        <div style="font-family:var(--display);font-weight:300;font-size:clamp(2.5rem,5vw,3.8rem);color:#fff;line-height:1;">50<span style="font-size:0.5em;">+</span></div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-top:0.5rem;">Countries Served</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Ready to Source with Confidence?</h2>
+      <p>Request a sample or get a quote — our team responds within 24 hours.</p>
+      <a href="/#contact" class="cta-btn">Get in Touch</a>
+    </div>
+
+  </main>
+
+  <footer>© 2025 HBR Electronics · 洪柏荣电子 · All rights reserved</footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', () =>
+      document.getElementById('navbar').classList.toggle('open'));
+  </script>
+</body>
+</html>

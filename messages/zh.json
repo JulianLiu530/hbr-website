@@ -1,9 +1,10 @@
 {
   "nav": {
     "products": "产品",
-    "about": "关于我们",
-    "features": "核心优势",
-    "contact": "联系我们"
+    "whyhbr": "选择HBR",
+    "abouthbr": "关于我们",
+    "contact": "联系我们",
+    "cta": "立即询价"
   },
   "hero": {
     "headline": "手机配件与液晶模组，工厂直供",

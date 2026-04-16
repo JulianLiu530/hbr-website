@@ -266,25 +266,11 @@ export default function Products() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
           transition={{ duration: 0.7 }}
-          className="mb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6"
+          className="mb-12 flex justify-end"
         >
-          <div>
-            <span
-              className="text-[#4FC3F7] text-[10px] tracking-[0.4em] uppercase mb-4 block"
-              style={{ fontFamily: 'var(--font-mono)' }}
-            >
-              01 — {t('title')}
-            </span>
-            <h2
-              className="text-white leading-tight"
-              style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2rem, 4vw, 3.5rem)', fontWeight: 300 }}
-            >
-              {t('subtitle')}
-            </h2>
-          </div>
           <a
             href="#contact"
-            className="group flex items-center gap-2 text-white/40 hover:text-[#4FC3F7] text-sm tracking-wide transition-colors shrink-0 self-start sm:self-auto"
+            className="group flex items-center gap-2 text-white/40 hover:text-[#4FC3F7] text-sm tracking-wide transition-colors shrink-0"
           >
             <span className="border-b border-white/15 group-hover:border-[#4FC3F7] transition-colors pb-0.5">
               Request a quote

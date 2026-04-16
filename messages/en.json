@@ -1,9 +1,10 @@
 {
   "nav": {
     "products": "Products",
-    "about": "About",
-    "features": "Why HBR",
-    "contact": "Contact"
+    "whyhbr": "Why HBR",
+    "abouthbr": "About HBR",
+    "contact": "Contact",
+    "cta": "Get Quote"
   },
   "hero": {
     "headline": "Mobile Parts & Display Modules, Factory Direct",

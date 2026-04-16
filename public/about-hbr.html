@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About HBR — HBR Electronics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --deep: #030d1f; --navy: #061840; --glow: #4FC3F7;
+      --display: 'Cormorant Garamond', serif;
+      --body: 'DM Sans', sans-serif; --mono: 'JetBrains Mono', monospace;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--body); background: var(--deep); color: #fff; -webkit-font-smoothing: antialiased; }
+
+    /* Grid texture */
+    body::after {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: linear-gradient(rgba(79,195,247,1) 1px, transparent 1px), linear-gradient(90deg, rgba(79,195,247,1) 1px, transparent 1px);
+      background-size: 60px 60px; opacity: 0.03;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: 64px; display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(3,13,31,0.88); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(79,195,247,0.08);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.65rem; text-decoration: none; }
+    .nav-logo img { width: 32px; height: 32px; object-fit: contain; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+    .nav-logo-text span:first-child { font-family: var(--mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; }
+    .nav-logo-text span:last-child { font-family: var(--mono); font-size: 9px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(79,195,247,0.55); margin-top: 2px; }
+    .nav-links { display: flex; align-items: center; gap: 0.25rem; list-style: none; }
+    .nav-links a { font-family: var(--body); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.45); text-decoration: none; padding: 0.45rem 0.85rem; border-radius: 6px; transition: color 0.2s, background 0.2s; }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
+    .nav-links a.active { color: #4FC3F7; background: rgba(79,195,247,0.08); }
+    /* Products dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
+    .nav-dropdown > a::after { content: '▾'; font-size: 9px; opacity: 0.5; }
+    .dropdown-menu {
+      display: none; position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+      background: rgba(4,12,34,0.97); backdrop-filter: blur(16px);
+      border: 1px solid rgba(79,195,247,0.12); border-radius: 10px;
+      padding: 0.5rem; min-width: 160px; list-style: none;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+    }
+    .nav-dropdown:hover .dropdown-menu { display: block; }
+    .dropdown-menu li a {
+      display: block; padding: 0.5rem 0.85rem; font-family: var(--body);
+      font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(255,255,255,0.5); text-decoration: none; border-radius: 6px;
+      transition: color 0.15s, background 0.15s; white-space: nowrap;
+    }
+    .dropdown-menu li a:hover { color: #4FC3F7; background: rgba(79,195,247,0.08); }
+    .nav-cta { font-family: var(--body); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--navy); background: var(--glow); text-decoration: none; padding: 0.55rem 1.2rem; border-radius: 6px; font-weight: 600; transition: background 0.25s; }
+    .nav-cta:hover { background: #fff; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-toggle span { display: block; width: 20px; height: 1.5px; background: rgba(255,255,255,0.6); margin: 4px 0; }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-toggle { display: block; }
+      nav.open .nav-links { display: flex; flex-direction: column; align-items: flex-start; position: fixed; top: 64px; left: 0; right: 0; background: rgba(3,13,31,0.97); padding: 1rem 1.5rem 1.5rem; border-bottom: 1px solid rgba(79,195,247,0.1); gap: 0; }
+      nav.open .nav-links li { width: 100%; }
+      nav.open .nav-links a { padding: 0.7rem 0.5rem; width: 100%; display: block; }
+      .dropdown-menu { display: none !important; }
+    }
+
+    /* Page hero */
+    .page-hero {
+      padding: 140px 2rem 80px; text-align: center; position: relative;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(79,195,247,0.08) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .eyebrow { font-family: var(--mono); font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: #4FC3F7; opacity: 0.8; margin-bottom: 1rem; display: block; }
+    .page-hero h1 { font-family: var(--display); font-weight: 300; font-size: clamp(2.4rem, 5vw, 4.2rem); color: #fff; line-height: 1.1; margin-bottom: 1rem; }
+    .page-hero p { color: rgba(255,255,255,0.38); font-size: 0.95rem; max-width: 480px; margin: 0 auto; line-height: 1.75; }
+
+    /* Section */
+    .section { max-width: 1100px; margin: 0 auto; padding: 0 2rem 100px; position: relative; z-index: 1; }
+
+    /* Back link */
+    .back-link { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; color: rgba(255,255,255,0.3); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-family: var(--mono); margin-bottom: 3rem; margin-top: 2rem; transition: color 0.2s; }
+    .back-link:hover { color: #4FC3F7; }
+    .back-link svg { width: 14px; height: 14px; }
+
+    /* Two-column layout */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-bottom: 5rem; }
+    @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; gap: 3rem; } }
+
+    /* Left: text block */
+    .about-body { font-family: var(--body); font-size: 0.95rem; color: rgba(255,255,255,0.45); line-height: 1.85; margin-bottom: 2.5rem; }
+    .location-chip { display: inline-flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.3); font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; }
+    .location-chip svg { width: 14px; height: 14px; color: #4FC3F7; flex-shrink: 0; }
+
+    /* Stats row */
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); margin-top: 2.5rem; }
+    .stat-item .stat-num { font-family: var(--display); font-weight: 300; font-size: clamp(1.8rem, 2.8vw, 2.4rem); color: #4FC3F7; line-height: 1; }
+    .stat-item .stat-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.25); margin-top: 0.4rem; line-height: 1.4; }
+
+    /* Right: Timeline */
+    .timeline { position: relative; padding-left: 1.5rem; border-left: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 2.25rem; }
+    .timeline-item { position: relative; }
+    .timeline-dot {
+      position: absolute; left: -1.94rem; top: 2px;
+      width: 10px; height: 10px; border-radius: 50%;
+      background: rgba(79,195,247,0.2); border: 1px solid rgba(79,195,247,0.4);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .timeline-dot::after { content: ''; width: 4px; height: 4px; border-radius: 50%; background: #4FC3F7; display: block; }
+    .timeline-year { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; color: rgba(79,195,247,0.5); margin-bottom: 0.35rem; }
+    .timeline-label { font-size: 0.9rem; color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+    /* Logo ring */
+    .logo-ring-wrap { display: flex; justify-content: center; align-items: center; margin-top: 2.5rem; }
+    .logo-ring {
+      position: relative; width: 200px; height: 200px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ring { position: absolute; border-radius: 50%; border: 1px solid rgba(79,195,247,0.07); }
+    .ring-1 { inset: 0; animation: spin 25s linear infinite; }
+    .ring-2 { inset: 20px; animation: spin 18s linear infinite reverse; }
+    .ring-3 { inset: 40px; }
+    .ring-glow { position: absolute; inset: 40px; border-radius: 50%; background: radial-gradient(circle, rgba(79,195,247,0.12), transparent 70%); }
+    .ring-text { text-align: center; position: relative; z-index: 1; }
+    .ring-text .r-hbr { font-family: var(--display); font-weight: 300; font-size: 2.4rem; color: rgba(255,255,255,0.8); line-height: 1; }
+    .ring-text .r-sub { font-family: var(--mono); font-size: 8px; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(79,195,247,0.5); margin-top: 3px; display: block; }
+    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+    /* Divider */
+    .divider { width: 100%; height: 1px; background: rgba(255,255,255,0.05); margin: 3rem 0; }
+
+    /* Values cards */
+    .values-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    @media (max-width: 640px) { .values-grid { grid-template-columns: 1fr; } }
+
+    .val-card {
+      border-radius: 16px; padding: 2rem 1.75rem;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(79,195,247,0.1);
+      transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s;
+    }
+    .val-card:hover { transform: translateY(-5px); box-shadow: 0 16px 48px rgba(79,195,247,0.08), 0 0 0 1px rgba(79,195,247,0.18); }
+    .val-icon { width: 40px; height: 40px; border-radius: 10px; background: rgba(79,195,247,0.08); border: 1px solid rgba(79,195,247,0.15); display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+    .val-icon svg { width: 18px; height: 18px; color: #4FC3F7; }
+    .val-title { font-family: var(--display); font-weight: 400; font-size: 1.05rem; color: #fff; margin-bottom: 0.5rem; }
+    .val-desc { font-size: 0.85rem; color: rgba(255,255,255,0.35); line-height: 1.7; }
+
+    /* Section heading */
+    .section-heading { font-family: var(--display); font-weight: 300; font-size: clamp(1.5rem, 3vw, 2.2rem); color: #fff; margin-bottom: 0.5rem; }
+    .section-sub { font-size: 0.875rem; color: rgba(255,255,255,0.3); line-height: 1.65; max-width: 520px; }
+
+    /* CTA */
+    .cta-section {
+      background: rgba(6,24,64,0.6); border-radius: 24px; padding: 4rem 3rem;
+      text-align: center; position: relative; overflow: hidden; margin-top: 3rem;
+      border: 1px solid rgba(79,195,247,0.1);
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(79,195,247,0.08), transparent 60%);
+    }
+    .cta-section h2 { font-family: var(--display); font-weight: 300; font-size: clamp(1.8rem, 3.5vw, 2.8rem); color: #fff; margin-bottom: 0.75rem; position: relative; }
+    .cta-section p { color: rgba(255,255,255,0.35); font-size: 0.9rem; margin-bottom: 2rem; position: relative; }
+    .cta-btn { display: inline-block; background: #4FC3F7; color: var(--navy); font-family: var(--body); font-weight: 600; font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.85rem 2rem; border-radius: 8px; text-decoration: none; transition: background 0.25s; position: relative; }
+    .cta-btn:hover { background: #fff; }
+
+    footer { border-top: 1px solid rgba(255,255,255,0.05); padding: 2rem; display: flex; justify-content: center; color: rgba(255,255,255,0.18); font-family: var(--mono); font-size: 11px; letter-spacing: 0.15em; position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="/" class="nav-logo">
+      <img src="/logo.png" alt="HBR" />
+      <div class="nav-logo-text"><span>HBR</span><span>Electronics</span></div>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-dropdown">
+        <a href="/products.html">Products</a>
+        <ul class="dropdown-menu">
+          <li><a href="/screens.html">Screens</a></li>
+          <li><a href="/glass.html">Glass + OCA</a></li>
+          <li><a href="/housing.html">Back Housing</a></li>
+          <li><a href="/battery.html">Batteries</a></li>
+        </ul>
+      </li>
+      <li><a href="/why-hbr.html">Why HBR</a></li>
+      <li><a href="/about-hbr.html" class="active">About HBR</a></li>
+    </ul>
+    <a href="/#contact" class="nav-cta">Get Quote</a>
+    <button class="nav-toggle" id="navToggle"><span></span><span></span><span></span></button>
+  </nav>
+
+  <header class="page-hero">
+    <span class="eyebrow">03 — Our Story</span>
+    <h1>About HBR</h1>
+    <p>15 years of building trust with buyers worldwide — factory-direct from Dongguan, China.</p>
+  </header>
+
+  <main class="section">
+    <a href="/" class="back-link">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 3L5 8l5 5"/></svg>
+      Back to Home
+    </a>
+
+    <div class="about-grid">
+
+      <!-- Left: company description -->
+      <div>
+        <p class="about-body">
+          HBR Electronics (洪柏荣电子) is a factory-direct exporter of mobile phone spare parts and accessories, established in 2009 in Shenzhen and relocated to Dongguan in 2017. We specialise in LCD screens, cover glass, back housing and batteries for iPhone and major Android brands — supplying wholesale and B2B buyers across Europe, the Americas, Southeast Asia, the Middle East and Africa.
+        </p>
+        <p class="about-body">
+          With over 15 years in the industry and a dedicated quality-control process at every production stage, HBR has grown to serve 500+ clients in 50+ countries. Our location in Dongguan — minutes from Shenzhen port — gives us a distinct logistics advantage for competitive pricing and fast worldwide delivery.
+        </p>
+        <div class="location-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          Dongguan, Guangdong, China
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-item">
+            <div class="stat-num">15<span style="font-size:0.55em;">+</span></div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">500<span style="font-size:0.55em;">+</span></div>
+            <div class="stat-label">Global Clients</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">50<span style="font-size:0.55em;">+</span></div>
+            <div class="stat-label">Countries Served</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: timeline + ring -->
+      <div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2009</div>
+            <div class="timeline-label">Founded in Shenzhen — Banxin Xinqingda Building, pioneering mobile accessory exports</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2017</div>
+            <div class="timeline-label">Dongguan factory established — expanded production capacity and supply chain control</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2019</div>
+            <div class="timeline-label">Hongxing Optoelectronics launched — dedicated LCD module manufacturing division</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-year">2023</div>
+            <div class="timeline-label">500+ clients across 50+ countries — established global B2B distribution network</div>
+          </div>
+        </div>
+
+        <div class="logo-ring-wrap">
+          <div class="logo-ring">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-3"></div>
+            <div class="ring-glow"></div>
+            <div class="ring-text">
+              <div class="r-hbr">HBR</div>
+              <span class="r-sub">Electronics</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Values -->
+    <div>
+      <div class="section-heading">What We Stand For</div>
+      <p class="section-sub">The principles that have guided 15 years of partnerships with buyers around the world.</p>
+    </div>
+
+    <div class="values-grid">
+
+      <div class="val-card">
+        <div class="val-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <div class="val-title">Uncompromising Quality</div>
+        <div class="val-desc">Every batch undergoes strict inspection before shipment — 100% testing for screens, OCA bonding checks for glass, and capacity verification for batteries.</div>
+      </div>
+
+      <div class="val-card">
+        <div class="val-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <div class="val-title">Factory Direct Pricing</div>
+        <div class="val-desc">No middlemen — our Dongguan production base near Shenzhen Port means you get competitive pricing, reliable inventory and faster delivery on every order.</div>
+      </div>
+
+      <div class="val-card">
+        <div class="val-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        </div>
+        <div class="val-title">Long-Term Partnerships</div>
+        <div class="val-desc">Over 80% of our business comes from repeat clients. We invest in relationships — providing dedicated support, flexible MOQs and consistent supply for growing businesses.</div>
+      </div>
+
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Ready to Work Together?</h2>
+      <p>Get in touch — our team responds within 24 hours.</p>
+      <a href="/#contact" class="cta-btn">Get in Touch</a>
+    </div>
+
+  </main>
+
+  <footer>© 2025 HBR Electronics · 洪柏荣电子 · All rights reserved</footer>
+
+  <script>
+    document.getElementById('navToggle').addEventListener('click', () =>
+      document.getElementById('navbar').classList.toggle('open'));
+  </script>
+</body>
+</html>
