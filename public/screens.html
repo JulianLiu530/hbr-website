@@ -54,7 +54,7 @@
     .nav-dropdown { position: relative; }
     .nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
     .nav-dropdown > a::after { content: '▾'; font-size: 9px; opacity: 0.5; }
-    .dropdown-menu { display: none; position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%); background: rgba(4,12,34,0.97); backdrop-filter: blur(16px); border: 1px solid rgba(79,195,247,0.12); border-radius: 10px; padding: 0.5rem; min-width: 160px; list-style: none; box-shadow: 0 16px 48px rgba(0,0,0,0.5); }
+    .dropdown-menu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(4,12,34,0.97); backdrop-filter: blur(16px); border: 1px solid rgba(79,195,247,0.12); border-radius: 10px; padding: 0.5rem; padding-top: 0.75rem; min-width: 160px; list-style: none; box-shadow: 0 16px 48px rgba(0,0,0,0.5); margin-top: 0; }
     .nav-dropdown:hover .dropdown-menu { display: block; }
     .dropdown-menu li a { display: block; padding: 0.5rem 0.85rem; font-family: var(--body); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(255,255,255,0.5); text-decoration: none; border-radius: 6px; transition: color 0.15s, background 0.15s; white-space: nowrap; }
     .dropdown-menu li a:hover, .dropdown-menu li a.active { color: #4FC3F7; background: rgba(79,195,247,0.08); }
@@ -85,60 +85,106 @@
     /* ── Cards grid ── */
     .cards-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.25rem;
     }
     @media (max-width: 500px) { .cards-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; } }
 
     .prod-card {
-      border-radius: 16px; padding: 1.5rem 1.25rem 1.25rem;
-      display: flex; flex-direction: column; gap: 0.5rem;
+      border-radius: 16px; overflow: hidden;
+      display: flex; flex-direction: column;
       transition: transform 0.35s cubic-bezier(0.22,1,0.36,1), box-shadow 0.35s;
       cursor: default;
     }
-    .prod-card:hover { transform: translateY(-5px); }
+    .prod-card:hover { transform: translateY(-6px); }
+
+    /* Card image area */
+    .prod-card .card-img {
+      width: 100%; aspect-ratio: 4/3; overflow: hidden;
+      position: relative; flex-shrink: 0;
+    }
+    .prod-card .card-img img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    }
+    .prod-card:hover .card-img img { transform: scale(1.04); }
+
+    /* Card body */
+    .prod-card .card-body {
+      padding: 1rem 1.1rem 1.1rem;
+      display: flex; flex-direction: column; gap: 0.55rem; flex: 1;
+    }
 
     /* Hard OLED */
     .c-hard {
-      background: linear-gradient(140deg, rgba(6,20,54,0.9), rgba(4,12,36,0.95));
+      background: linear-gradient(160deg, rgba(6,20,54,0.95), rgba(4,12,36,0.98));
       border: 1px solid rgba(79,195,247,0.18);
       box-shadow: 0 2px 16px rgba(0,0,0,0.3);
     }
-    .c-hard:hover { box-shadow: 0 12px 40px rgba(79,195,247,0.1), 0 0 0 1px rgba(79,195,247,0.25); }
+    .c-hard:hover { box-shadow: 0 14px 44px rgba(79,195,247,0.12), 0 0 0 1px rgba(79,195,247,0.28); }
     .c-hard .badge { color: #4FC3F7; background: rgba(79,195,247,0.1); border: 1px solid rgba(79,195,247,0.2); }
     .c-hard .model { color: #fff; }
+    .c-hard .card-img { background: rgba(6,20,54,0.6); }
+    .c-hard .quote-btn { color: #4FC3F7; border-color: rgba(79,195,247,0.3); }
+    .c-hard .quote-btn:hover { background: rgba(79,195,247,0.12); border-color: rgba(79,195,247,0.55); }
 
     /* Soft OLED */
     .c-soft {
-      background: linear-gradient(140deg, rgba(5,14,36,0.9), rgba(3,10,26,0.95));
+      background: linear-gradient(160deg, rgba(5,14,36,0.95), rgba(3,10,26,0.98));
       border: 1px solid rgba(192,200,216,0.15);
       box-shadow: 0 2px 16px rgba(0,0,0,0.3);
     }
-    .c-soft:hover { box-shadow: 0 12px 40px rgba(192,200,216,0.08), 0 0 0 1px rgba(192,200,216,0.2); }
+    .c-soft:hover { box-shadow: 0 14px 44px rgba(192,200,216,0.09), 0 0 0 1px rgba(192,200,216,0.22); }
     .c-soft .badge { color: #C0C8D8; background: rgba(192,200,216,0.08); border: 1px solid rgba(192,200,216,0.18); }
     .c-soft .model { color: #fff; }
+    .c-soft .card-img { background: rgba(5,14,36,0.6); }
+    .c-soft .quote-btn { color: #C0C8D8; border-color: rgba(192,200,216,0.28); }
+    .c-soft .quote-btn:hover { background: rgba(192,200,216,0.1); border-color: rgba(192,200,216,0.5); }
 
     /* Incell */
     .c-incell {
-      background: linear-gradient(140deg, rgba(4,14,36,0.9), rgba(3,10,28,0.95));
+      background: linear-gradient(160deg, rgba(4,14,36,0.95), rgba(3,10,28,0.98));
       border: 1px solid rgba(168,216,234,0.15);
       box-shadow: 0 2px 16px rgba(0,0,0,0.3);
     }
-    .c-incell:hover { box-shadow: 0 12px 40px rgba(168,216,234,0.08), 0 0 0 1px rgba(168,216,234,0.2); }
+    .c-incell:hover { box-shadow: 0 14px 44px rgba(168,216,234,0.09), 0 0 0 1px rgba(168,216,234,0.22); }
     .c-incell .badge { color: #A8D8EA; background: rgba(168,216,234,0.08); border: 1px solid rgba(168,216,234,0.18); }
     .c-incell .model { color: #fff; }
+    .c-incell .card-img { background: rgba(4,14,36,0.6); }
+    .c-incell .quote-btn { color: #A8D8EA; border-color: rgba(168,216,234,0.28); }
+    .c-incell .quote-btn:hover { background: rgba(168,216,234,0.1); border-color: rgba(168,216,234,0.5); }
 
     .prod-card .badge {
       display: inline-block; font-family: var(--mono); font-size: 8px;
       letter-spacing: 0.3em; text-transform: uppercase;
-      padding: 0.25rem 0.6rem; border-radius: 20px; align-self: flex-start; margin-bottom: 0.3rem;
+      padding: 0.25rem 0.6rem; border-radius: 20px; align-self: flex-start;
     }
     .prod-card .model {
       font-family: var(--display); font-weight: 400;
-      font-size: clamp(0.95rem, 1.5vw, 1.1rem); line-height: 1.3;
+      font-size: clamp(1rem, 1.6vw, 1.15rem); line-height: 1.25;
+    }
+    .prod-card .specs {
+      display: flex; flex-wrap: wrap; gap: 0.35rem; margin-top: 0.1rem;
+    }
+    .prod-card .spec-tag {
+      font-family: var(--mono); font-size: 9px; letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.38); background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 4px;
+      padding: 0.2rem 0.45rem;
     }
     .prod-card .sub {
-      font-size: 11px; color: rgba(255,255,255,0.3); line-height: 1.5; margin-top: 0.2rem;
+      font-size: 11px; color: rgba(255,255,255,0.28); line-height: 1.5;
+    }
+    .prod-card .card-footer {
+      margin-top: auto; padding-top: 0.65rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .prod-card .quote-btn {
+      display: block; width: 100%; text-align: center;
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+      text-decoration: none; padding: 0.55rem 0;
+      border: 1px solid; border-radius: 8px;
+      transition: background 0.2s, border-color 0.2s;
     }
 
     /* ── Type showcase ── */
@@ -267,53 +313,349 @@
     <!-- Hard OLED -->
     <div class="section-label"><span class="label-hard">Hard OLED</span></div>
     <div class="cards-grid">
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone X</div><div class="sub">5.8" · 2436×1125</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone XS</div><div class="sub">5.8" · 2436×1125</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone XS Max</div><div class="sub">6.5" · 2688×1242</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 11 Pro</div><div class="sub">5.8" · 2436×1125</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 11 Pro Max</div><div class="sub">6.5" · 2688×1242</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 12 Pro</div><div class="sub">6.1" · 2532×1170</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 12 Pro Max</div><div class="sub">6.7" · 2778×1284</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 13 Pro</div><div class="sub">6.1" · 2532×1170</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 13 Pro Max</div><div class="sub">6.7" · 2778×1284</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 14 Pro</div><div class="sub">6.1" · 2556×1179</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 14 Pro Max</div><div class="sub">6.7" · 2796×1290</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 15 Pro</div><div class="sub">6.1" · 2556×1179</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 15 Pro Max</div><div class="sub">6.7" · 2796×1290</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 16 Pro</div><div class="sub">6.3" · 2622×1206</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 16 Pro Max</div><div class="sub">6.9" · 2868×1320</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 17 Pro</div><div class="sub">6.3" · Latest</div></div>
-      <div class="prod-card c-hard"><span class="badge">Hard OLED</span><div class="model">iPhone 17 Pro Max</div><div class="sub">6.9" · Latest</div></div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone X</div>
+          <div class="specs"><span class="spec-tag">5.8"</span><span class="spec-tag">2436×1125</span><span class="spec-tag">OLED</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone XS</div>
+          <div class="specs"><span class="spec-tag">5.8"</span><span class="spec-tag">2436×1125</span><span class="spec-tag">OLED</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone XS Max</div>
+          <div class="specs"><span class="spec-tag">6.5"</span><span class="spec-tag">2688×1242</span><span class="spec-tag">OLED</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 11 Pro</div>
+          <div class="specs"><span class="spec-tag">5.8"</span><span class="spec-tag">2436×1125</span><span class="spec-tag">OLED</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 11 Pro Max</div>
+          <div class="specs"><span class="spec-tag">6.5"</span><span class="spec-tag">2688×1242</span><span class="spec-tag">OLED</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 12 Pro</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">2532×1170</span><span class="spec-tag">OLED</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 12 Pro Max</div>
+          <div class="specs"><span class="spec-tag">6.7"</span><span class="spec-tag">2778×1284</span><span class="spec-tag">OLED</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 13 Pro</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">2532×1170</span><span class="spec-tag">ProMotion</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 13 Pro Max</div>
+          <div class="specs"><span class="spec-tag">6.7"</span><span class="spec-tag">2778×1284</span><span class="spec-tag">ProMotion</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 14 Pro</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">2556×1179</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 14 Pro Max</div>
+          <div class="specs"><span class="spec-tag">6.7"</span><span class="spec-tag">2796×1290</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 15 Pro</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">2556×1179</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 15 Pro Max</div>
+          <div class="specs"><span class="spec-tag">6.7"</span><span class="spec-tag">2796×1290</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 16 Pro</div>
+          <div class="specs"><span class="spec-tag">6.3"</span><span class="spec-tag">2622×1206</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 16 Pro Max</div>
+          <div class="specs"><span class="spec-tag">6.9"</span><span class="spec-tag">2868×1320</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 17 Pro</div>
+          <div class="specs"><span class="spec-tag">6.3"</span><span class="spec-tag">Latest</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-hard">
+        <div class="card-img"><img src="/images/screen-hard-oled.png" alt="Hard OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Hard OLED</span>
+          <div class="model">iPhone 17 Pro Max</div>
+          <div class="specs"><span class="spec-tag">6.9"</span><span class="spec-tag">Latest</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
     </div>
 
     <!-- Soft OLED -->
     <div class="section-label"><span class="label-soft">Soft OLED</span></div>
     <div class="cards-grid">
-      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 12</div><div class="sub">6.1" · 2532×1170</div></div>
-      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 12 Mini</div><div class="sub">5.4" · 2340×1080</div></div>
-      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 13</div><div class="sub">6.1" · 2532×1170</div></div>
-      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 13 Mini</div><div class="sub">5.4" · 2340×1080</div></div>
-      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 14</div><div class="sub">6.1" · 2532×1170</div></div>
-      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 14 Plus</div><div class="sub">6.7" · 2778×1284</div></div>
-      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 15</div><div class="sub">6.1" · 2556×1179</div></div>
-      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 15 Plus</div><div class="sub">6.7" · 2796×1290</div></div>
-      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 16</div><div class="sub">6.1" · 2556×1179</div></div>
-      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 16 Plus</div><div class="sub">6.7" · 2796×1290</div></div>
-      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 17</div><div class="sub">6.1" · Latest</div></div>
-      <div class="prod-card c-soft"><span class="badge">Soft OLED</span><div class="model">iPhone 17 Plus</div><div class="sub">6.7" · Latest</div></div>
+      <div class="prod-card c-soft">
+        <div class="card-img"><img src="/images/screen-soft-oled.png" alt="Soft OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Soft OLED</span>
+          <div class="model">iPhone 12</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">2532×1170</span><span class="spec-tag">OLED</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-soft">
+        <div class="card-img"><img src="/images/screen-soft-oled.png" alt="Soft OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Soft OLED</span>
+          <div class="model">iPhone 12 Mini</div>
+          <div class="specs"><span class="spec-tag">5.4"</span><span class="spec-tag">2340×1080</span><span class="spec-tag">OLED</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-soft">
+        <div class="card-img"><img src="/images/screen-soft-oled.png" alt="Soft OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Soft OLED</span>
+          <div class="model">iPhone 13</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">2532×1170</span><span class="spec-tag">OLED</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-soft">
+        <div class="card-img"><img src="/images/screen-soft-oled.png" alt="Soft OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Soft OLED</span>
+          <div class="model">iPhone 13 Mini</div>
+          <div class="specs"><span class="spec-tag">5.4"</span><span class="spec-tag">2340×1080</span><span class="spec-tag">OLED</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-soft">
+        <div class="card-img"><img src="/images/screen-soft-oled.png" alt="Soft OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Soft OLED</span>
+          <div class="model">iPhone 14</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">2532×1170</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-soft">
+        <div class="card-img"><img src="/images/screen-soft-oled.png" alt="Soft OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Soft OLED</span>
+          <div class="model">iPhone 14 Plus</div>
+          <div class="specs"><span class="spec-tag">6.7"</span><span class="spec-tag">2778×1284</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-soft">
+        <div class="card-img"><img src="/images/screen-soft-oled.png" alt="Soft OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Soft OLED</span>
+          <div class="model">iPhone 15</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">2556×1179</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-soft">
+        <div class="card-img"><img src="/images/screen-soft-oled.png" alt="Soft OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Soft OLED</span>
+          <div class="model">iPhone 15 Plus</div>
+          <div class="specs"><span class="spec-tag">6.7"</span><span class="spec-tag">2796×1290</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-soft">
+        <div class="card-img"><img src="/images/screen-soft-oled.png" alt="Soft OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Soft OLED</span>
+          <div class="model">iPhone 16</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">2556×1179</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-soft">
+        <div class="card-img"><img src="/images/screen-soft-oled.png" alt="Soft OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Soft OLED</span>
+          <div class="model">iPhone 16 Plus</div>
+          <div class="specs"><span class="spec-tag">6.7"</span><span class="spec-tag">2796×1290</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-soft">
+        <div class="card-img"><img src="/images/screen-soft-oled.png" alt="Soft OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Soft OLED</span>
+          <div class="model">iPhone 17</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">Latest</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-soft">
+        <div class="card-img"><img src="/images/screen-soft-oled.png" alt="Soft OLED" /></div>
+        <div class="card-body">
+          <span class="badge">Soft OLED</span>
+          <div class="model">iPhone 17 Plus</div>
+          <div class="specs"><span class="spec-tag">6.7"</span><span class="spec-tag">Latest</span><span class="spec-tag">Dynamic Island</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
     </div>
 
     <!-- Incell -->
     <div class="section-label"><span class="label-incell">Incell</span></div>
     <div class="cards-grid">
-      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone X</div><div class="sub">5.8" · LCD</div></div>
-      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone XR</div><div class="sub">6.1" · 1792×828</div></div>
-      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone 11</div><div class="sub">6.1" · 1792×828</div></div>
-      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone 12</div><div class="sub">6.1" · LCD alt.</div></div>
-      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone 12 Mini</div><div class="sub">5.4" · LCD alt.</div></div>
-      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone 13</div><div class="sub">6.1" · LCD alt.</div></div>
-      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone 13 Mini</div><div class="sub">5.4" · LCD alt.</div></div>
-      <div class="prod-card c-incell"><span class="badge">Incell</span><div class="model">iPhone 14</div><div class="sub">6.1" · LCD alt.</div></div>
+      <div class="prod-card c-incell">
+        <div class="card-img"><img src="/images/screen-incell.png" alt="Incell LCD" /></div>
+        <div class="card-body">
+          <span class="badge">Incell</span>
+          <div class="model">iPhone X</div>
+          <div class="specs"><span class="spec-tag">5.8"</span><span class="spec-tag">LCD</span><span class="spec-tag">FHD</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-incell">
+        <div class="card-img"><img src="/images/screen-incell.png" alt="Incell LCD" /></div>
+        <div class="card-body">
+          <span class="badge">Incell</span>
+          <div class="model">iPhone XR</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">1792×828</span><span class="spec-tag">LCD</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-incell">
+        <div class="card-img"><img src="/images/screen-incell.png" alt="Incell LCD" /></div>
+        <div class="card-body">
+          <span class="badge">Incell</span>
+          <div class="model">iPhone 11</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">1792×828</span><span class="spec-tag">LCD</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-incell">
+        <div class="card-img"><img src="/images/screen-incell.png" alt="Incell LCD" /></div>
+        <div class="card-body">
+          <span class="badge">Incell</span>
+          <div class="model">iPhone 12</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">LCD alt.</span><span class="spec-tag">FHD</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-incell">
+        <div class="card-img"><img src="/images/screen-incell.png" alt="Incell LCD" /></div>
+        <div class="card-body">
+          <span class="badge">Incell</span>
+          <div class="model">iPhone 12 Mini</div>
+          <div class="specs"><span class="spec-tag">5.4"</span><span class="spec-tag">LCD alt.</span><span class="spec-tag">FHD</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-incell">
+        <div class="card-img"><img src="/images/screen-incell.png" alt="Incell LCD" /></div>
+        <div class="card-body">
+          <span class="badge">Incell</span>
+          <div class="model">iPhone 13</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">LCD alt.</span><span class="spec-tag">FHD</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-incell">
+        <div class="card-img"><img src="/images/screen-incell.png" alt="Incell LCD" /></div>
+        <div class="card-body">
+          <span class="badge">Incell</span>
+          <div class="model">iPhone 13 Mini</div>
+          <div class="specs"><span class="spec-tag">5.4"</span><span class="spec-tag">LCD alt.</span><span class="spec-tag">FHD</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
+      <div class="prod-card c-incell">
+        <div class="card-img"><img src="/images/screen-incell.png" alt="Incell LCD" /></div>
+        <div class="card-body">
+          <span class="badge">Incell</span>
+          <div class="model">iPhone 14</div>
+          <div class="specs"><span class="spec-tag">6.1"</span><span class="spec-tag">LCD alt.</span><span class="spec-tag">FHD</span></div>
+          <div class="card-footer"><a href="/#contact" class="quote-btn">Get Quote</a></div>
+        </div>
+      </div>
     </div>
   </main>
 

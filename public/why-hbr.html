@@ -40,10 +40,10 @@
     .nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
     .nav-dropdown > a::after { content: '▾'; font-size: 9px; opacity: 0.5; }
     .dropdown-menu {
-      display: none; position: absolute; top: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+      display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
       background: rgba(4,12,34,0.97); backdrop-filter: blur(16px);
       border: 1px solid rgba(79,195,247,0.12); border-radius: 10px;
-      padding: 0.5rem; min-width: 160px; list-style: none;
+      padding: 0.5rem; padding-top: 0.75rem; min-width: 160px; list-style: none;
       box-shadow: 0 16px 48px rgba(0,0,0,0.5);
     }
     .nav-dropdown:hover .dropdown-menu { display: block; }
